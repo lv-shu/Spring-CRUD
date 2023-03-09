@@ -1,8 +1,8 @@
 package com.spring.spring.controller;
 
 
-import com.spring.spring.Model.Task;
-import com.spring.spring.service.TaskService;
+import com.spring.spring.Model.Video;
+import com.spring.spring.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,23 +14,23 @@ import java.util.List;
 public class VideoController {
 
     @Autowired
-    private TaskService service;
+    private VideoService service;
 
-    @PostMapping
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Task createTask(@RequestBody Task task){
-        return service.addTask(task);
+    public Video createTask(@RequestBody Video video){
+        return service.addTask(video);
     }
 
-    @GetMapping
-    public List<Task> getTasks() {
+    @GetMapping("/")
+    public List<Video> getTasks() {
         return service.findAllTasks();
     }
 
 
-    @GetMapping("/{taskId}")
-    public Task getTask(@PathVariable String taskId){
-        return service.getTaskByTaskId(taskId);
+    @GetMapping("{videoId}")
+    public Video getTask(@PathVariable String videoId){
+        return service.getTaskByTaskId(videoId);
     }
 //
 //    @GetMapping("/severity/{severity}")
@@ -43,13 +43,13 @@ public class VideoController {
 //        return service.getTaskByAssignee(assignee);
 //    }
 //
-    @PutMapping("/{id}")
-    public Task modifyTask(@RequestBody Task task){
-        return service.updateTask(task);
+    @PutMapping("/{videoId}")
+    public Video modifyTask(@RequestBody Video video,@PathVariable String videoId ){
+        return service.updateTask(video, videoId);
     }
 //
-    @DeleteMapping("/{taskId}")
-    public String deleteTask(@PathVariable String taskId){
-        return service.deleteTask(taskId);
+    @DeleteMapping("/{videoId}")
+    public String deleteTask(@PathVariable String videoId){
+        return service.deleteTask(videoId);
     }
 }

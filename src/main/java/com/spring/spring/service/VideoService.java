@@ -1,9 +1,9 @@
 package com.spring.spring.service;
 
-import com.spring.spring.Model.Task;
+import com.spring.spring.Model.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.spring.spring.repositories.TaskRepository;
+import com.spring.spring.repositories.VideoRepository;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,22 +12,22 @@ import java.util.UUID;
 public class VideoService {
 
     @Autowired
-    private TaskRepository repository;
+    private VideoRepository repository;
 
     //CRUD  CREATE , READ , UPDATE , DELETE
 
-    public Task addTask(Task task) {
-        task.set_id(UUID.randomUUID().toString().split("-")[0]);
-        return repository.save(task);
+    public Video addTask(Video video) {
+        video.set_id(UUID.randomUUID().toString().split("-")[0]);
+        return repository.save(video);
     }
 
-    public List<Task> findAllTasks() {
+    public List<Video> findAllTasks() {
         return repository.findAll();
     }
 
 //
-    public Task getTaskByTaskId(String taskId) {
-        return repository.findById(taskId).get();
+    public Video getTaskByTaskId(String videoId) {
+        return repository.findById(videoId).get();
     }
 //
 //    public List<Task> getTaskBySeverity(int severity) {
@@ -38,19 +38,19 @@ public class VideoService {
 //        return repository.getTasksByAssignee(assignee);
 //    }
 //
-    public Task updateTask(Task taskRequest) {
+    public Video updateTask(Video videoRequest, String videoId) {
         //get the existing document from DB
         // populate new value from request to existing object/entity/document
-        Task existingTask = repository.findById(taskRequest.get_id()).get();
-        existingTask.setName(taskRequest.getName());
-        existingTask.setTags(taskRequest.getTags());
-        existingTask.setThumbnail_url(taskRequest.getThumbnail_url());
-        existingTask.setVideo_url(taskRequest.getVideo_url());
-        existingTask.setView(taskRequest.getView());
-        existingTask.setLike(taskRequest.getLike());
-        existingTask.setCategory_id(taskRequest.getCategory_id());
-        existingTask.setProvider_id(taskRequest.getProvider_id());
-        existingTask.setVod_id(taskRequest.getVod_id());
+        Video existingTask = repository.findById(videoId).get();
+        existingTask.setName(videoRequest.getName());
+        existingTask.setTags(videoRequest.getTags());
+        existingTask.setThumbnail_url(videoRequest.getThumbnail_url());
+        existingTask.setVideo_url(videoRequest.getVideo_url());
+        existingTask.setView(videoRequest.getView());
+        existingTask.setLike(videoRequest.getLike());
+        existingTask.setCategory_id(videoRequest.getCategory_id());
+        existingTask.setProvider_id(videoRequest.getProvider_id());
+        existingTask.setVod_id(videoRequest.getVod_id());
         return repository.save(existingTask);
     }
 //
