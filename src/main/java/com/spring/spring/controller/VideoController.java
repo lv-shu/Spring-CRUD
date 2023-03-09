@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/videos")
-public class TaskController {
+public class VideoController {
 
     @Autowired
     private TaskService service;
