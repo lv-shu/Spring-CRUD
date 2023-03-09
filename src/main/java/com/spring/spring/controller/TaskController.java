@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/doublefish-docs")
+@RequestMapping("/videos")
 public class TaskController {
 
     @Autowired
     private TaskService service;
 
-    @PostMapping("/videos")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Task createTask(@RequestBody Task task){
         return service.addTask(task);
     }
 
-    @GetMapping("/videos")
+    @GetMapping
     public List<Task> getTasks() {
         return service.findAllTasks();
     }
 
 
-    @GetMapping("/videos/{taskId}")
+    @GetMapping("/{taskId}")
     public Task getTask(@PathVariable String taskId){
         return service.getTaskByTaskId(taskId);
     }
@@ -43,12 +43,12 @@ public class TaskController {
 //        return service.getTaskByAssignee(assignee);
 //    }
 //
-    @PutMapping("/video/{id}")
+    @PutMapping("/{id}")
     public Task modifyTask(@RequestBody Task task){
         return service.updateTask(task);
     }
 //
-    @DeleteMapping("/video/{taskId}")
+    @DeleteMapping("/{taskId}")
     public String deleteTask(@PathVariable String taskId){
         return service.deleteTask(taskId);
     }
